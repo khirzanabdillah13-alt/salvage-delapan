@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="1.png" alt="1.png" id="src">
+        </div>
+        <nav class="menu">
+            <a href="portfolio.html" class="nav-link">beranda</a>
+            <a href="bt.html" class="nav-link">buku tahunan</a>
+            <a href="video.html" class="nav-link">video</a>
+            <a href="slv.html" class="nav-link">salvage</a>
+        </nav>
+    </header>
+
+    <div id="content" class="content-container">
+        <!-- Initial content will be loaded here -->
+    </div>
+
+    <script>
+        let currentContent = null;
+
+        function loadContent(url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const body = doc.body;
+                    // Remove header if present
+                    const header = body.querySelector('.navbar');
+                    if (header) header.remove();
+                    // Get the inner HTML of the body
+                    const newContent = body.innerHTML;
+                    const contentDiv = document.getElementById('content');
+                    // Add slide-in class
+                    contentDiv.classList.add('slide-in');
+                    // Set new content
+                    contentDiv.innerHTML = newContent;
+                    // Remove slide-in class after animation
+                    setTimeout(() => {
+                        contentDiv.classList.remove('slide-in');
+                    }, 500); // Match transition duration
+                })
+                .catch(error => console.error('Error loading content:', error));
+        }
+
+        // Load initial content from portfolio.html
+        loadContent('portfolio.html');
+
+        // Add event listeners to nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                loadContent(this.href);
+            });
+        });
+    </script>
+</body>
+</html>
