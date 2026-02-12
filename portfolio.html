@@ -1,0 +1,204 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header class="navbar">
+    <div class="logo">
+
+      <img src="1.png" alt="1.png" id="src">
+    </div>
+
+    <nav class="menu">
+      <a href="portfolio.html">beranda</a>
+      <a href="bt.html">buku tahunan</a>
+      <a href="video.html">video</a>
+      <a href="slv.html">salvage</a>
+    </nav>
+  </header>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search by name...">
+  </div>
+
+  <div class="gallery" id="gallery">
+    <!-- Photos will be added here -->
+  </div>
+
+  <script>
+    // Array of photo data
+    const photos = [
+  { src: "img/1.jpg", name: "Adila Dafa Kurniawan" },
+  { src: "img/2.jpg", name: "Arya Muhammad Azka" },
+  { src: "img/3.jpg", name: "Azizan Nurfadilah" },
+  { src: "img/4.jpg", name: "Daffa Al-Malik" },
+  { src: "img/5.jpg", name: "Enzo Van Catya Al-Kayyis" },
+  { src: "img/6.jpg", name: "Farelyno Avanza Yosea Witantra" },
+  { src: "img/7.jpg", name: "Gilang Hendrawan" },
+  { src: "img/8.jpg", name: "Kaisu Goku Sawa" },
+  { src: "img/9.jpg", name: "Khirzan Abdillah Ismail" },
+  { src: "img/10.jpg", name: "Mochammad Andra Fateh Hibatullah" },
+  { src: "img/11.jpg", name: "Muhammad Ahkyar Nasrullah" },
+  { src: "img/12.jpg", name: "Muhammad Khoirul Royan" },
+  { src: "img/13.jpg", name: "Muhammad Dio Pradana" },
+  { src: "img/14.jpg", name: "Muhammad Rizki Al-Buchori" },
+  { src: "img/15.jpg", name: "Muhammad Bilal Hafis" },
+  { src: "img/16.jpg", name: "Padil Abdillah" },
+  { src: "img/17.jpg", name: "Putra Muhammad Farraz" },
+  { src: "img/18.jpg", name: "Raghib Nasrullah" },
+  { src: "img/19.jpg", name: "Sheva Ibrahimovic Marlen" },
+  { src: "img/20.jpg", name: "Mizan Ahmad Fatkul Huda" },
+  { src: "img/21.jpg", name: "Agnhi Shakira Dwi" },
+  { src: "img/22.jpg", name: "Agnhia Safhira Ali" },
+  { src: "img/23.jpg", name: "Ailsa Bilqis Anzalea" },
+  { src: "img/24.jpg", name: "Ardila Aidah Fitri" },
+  { src: "img/25.jpg", name: "Atiqah Aulia Zahwa" },
+  { src: "img/26.jpg", name: "Balqis Aura Hakim" },
+  { src: "img/27.jpg", name: "Bilqis Haruna Octavia" },
+  { src: "img/28.jpg", name: "Cintasya Delivia" },
+  { src: "img/29.jpg", name: "Ghina Layli Fadhilah" },
+  { src: "img/30.jpg", name: "Happy Lestari" },
+  { src: "img/31.jpg", name: "Indah Syakira" },
+  { src: "img/32.jpg", name: "Kheisya Melianova" },
+  { src: "img/33.jpg", name: "Novia Bunga Cantika" },
+  { src: "img/34.jpg", name: "Qeysa Juliana" },
+  { src: "img/35.jpg", name: "Saskia Gendis Cantika" },
+  { src: "img/36.jpg", name: "Zalfa Izza Lambada" },
+  { src: "img/37.jpg", name: "Salwa Anindia Deanda" },
+  { src: "img/38.jpg", name: "Akina Rusyida Nurmalina" },
+  { src: "img/39.jpg", name: "Puput Khusnul Khotimah" },
+  { src: "img/40.jpg", name: "Aleta Abelita" },
+  { src: "img/41.jpg", name: "Ardina May Riantika" },
+  { src: "img/42.jpg", name: "Cindi Al-Faiza Nurmala Sari" },
+  { src: "img/43.jpg", name: "Kirana Cinta" },
+  { src: "img/44.jpg", name: "Mouza Radha Aszha" },
+  { src: "img/45.jpg", name: "Shofia" },
+  { src: "img/46.jpg", name: "Ayu Aufa Nazwa" },
+  { src: "img/47.jpg", name: "Farika Mujahidah" }
+];
+
+    // Function to render gallery
+    function renderGallery(filteredPhotos) {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+      filteredPhotos.forEach(photo => {
+        const photoDiv = document.createElement('div');
+        photoDiv.className = 'photo-item';
+        photoDiv.innerHTML = `
+          <img src="${photo.src}" alt="${photo.name}">
+          <p>${photo.name}</p>
+        `;
+        gallery.appendChild(photoDiv);
+      });
+    }
+
+    // Initial render
+    renderGallery(photos);
+
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      const filtered = photos.filter(photo => photo.name.toLowerCase().includes(query));
+      renderGallery(filtered);
+    });
+  </script>
+
+  <link rel="stylesheet" href="common.css">
+<style>
+.search-container {
+  text-align: center;
+  margin: 20px 0;
+  background-color: #f0e6ff; /* Light pastel purple */
+  padding: 20px;
+}
+
+#searchInput {
+  padding: 10px;
+  width: 300px;
+  border: 2px solid #d4a574; /* Pastel brown */
+  border-radius: 20px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: #ffe6e6; /* Light pastel pink */
+}
+
+.photo-item {
+  background-color: #e6f7ff; /* Light pastel blue */
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.photo-item:hover {
+  transform: scale(1.05);
+}
+
+.photo-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.photo-item p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #5a5a5a; /* Soft gray */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  #src {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .menu {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .menu a {
+    padding: 8px 15px;
+    font-size: 16px;
+  }
+
+  .search-container {
+    padding: 15px;
+  }
+
+  #searchInput {
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .photo-item img {
+    height: 120px;
+  }
+}
+    </style>
+</body>
+</html>

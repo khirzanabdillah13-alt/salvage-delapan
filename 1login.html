@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>salvage login</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: url('bg.JPG') no-repeat center center fixed;
+        background-size: cover;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-box {
+        width: 350px;
+        background: rgba(255,255,255,0.6);
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #000000;
+    }
+
+    label {
+        font-size: 14px;
+        color: #696969;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 6px 0 15px;
+        border-radius: 8px;
+        border: 1px solid #D3D3D3;
+        font-size: 14px;
+        background-color: #F5F5F5;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #B0B0B0;
+        box-shadow: 0 0 5px rgba(176, 176, 176, 0.5);
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: linear-gradient(135deg, #867979, #7a6f6f);
+        color: #000000;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 15px;
+        transition: background 0.3s ease;
+    }
+
+    button:hover {
+        background: linear-gradient(135deg, #F0F0F0, #E0E0E0);
+    }
+
+    .message {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .error {
+        color: red;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .login-box {
+            width: 90%;
+            max-width: 350px;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        input {
+            font-size: 14px;
+        }
+
+        button {
+            font-size: 14px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="login-box">
+    <h2>salvage Login</h2>
+
+    <label>Username</label>
+    <input type="text" id="username" placeholder="Masukkan username">
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Masukkan password">
+
+    <button onclick="login()">Login</button>
+
+    <div id="message" class="message"></div>
+</div>
+<script>
+    const users = [
+  { username: "adila@salvage.acount", password: "adila4821" },
+  { username: "arya@salvage.acount", password: "arya7392" },
+  { username: "azizan@salvage.acount", password: "azizan6408" },
+  { username: "daffa@salvage.acount", password: "daffa9153" },
+  { username: "enzo@salvage.acount", password: "enzo2847" },
+  { username: "farelyno@salvage.acount", password: "farelyno1234" },
+  { username: "gilang@salvage.acount", password: "gilang1746" },
+  { username: "kaisu@salvage.acount", password: "kaisu9082" },
+  { username: "khirzan@salvage.acount", password: "khirzan3325" },
+  { username: "andra@salvage.acount", password: "mochammad6014" },
+  { username: "ahkyar@salvage.acount", password: "muhammad8472" },
+  { username: "khoirul@salvage.acount", password: "muhammad3921" },
+  { username: "dio@salvage.acount", password: "muhammad5608" },
+  { username: "rizki@salvage.acount", password: "muhammad7149" },
+  { username: "bilal@salvage.acount", password: "muhammad2284" },
+  { username: "padil@salvage.acount", password: "padil4916" },
+  { username: "putra@salvage.acount", password: "putra8357" },
+  { username: "raghib@salvage.acount", password: "raghib6029" },
+  { username: "sheva@salvage.acount", password: "sheva7741" },
+  { username: "mizan@salvage.acount", password: "mizan5193" },
+  { username: "agnhi@salvage.acount", password: "agnhi3468" },
+  { username: "agnhia@salvage.acount", password: "agnhia9074" },
+  { username: "ailsa@salvage.acount", password: "ailsa6520" },
+  { username: "ardila@salvage.acount", password: "ardila4817" },
+  { username: "atiqah@salvage.acount", password: "atiqah3906" },
+  { username: "balqis@salvage.acount", password: "balqis2749" },
+  { username: "bilqis@salvage.acount", password: "bilqis8315" },
+  { username: "cintasya@salvage.acount", password: "cintasya4962" },
+  { username: "ghina@salvage.acount", password: "ghina7184" },
+  { username: "happy@salvage.acount", password: "happy2059" },
+  { username: "indah@salvage.acount", password: "indah9643" },
+  { username: "kheisya@salvage.acount", password: "kheisya5871" },
+  { username: "novia@salvage.acount", password: "novia4308" },
+  { username: "qeysa@salvage.acount", password: "qeysa6192" },
+  { username: "saskia@salvage.acount", password: "saskia7426" },
+  { username: "zalfa@salvage.acount", password: "zalfa3850" },
+  { username: "salwa@salvage.acount", password: "salwa9063" },
+  { username: "akina@salvage.acount", password: "akina2187" },
+  { username: "puput@salvage.acount", password: "puput6594" },
+  { username: "aleta@salvage.acount", password: "aleta3418" },
+  { username: "ardina@salvage.acount", password: "ardina5729" },
+  { username: "cindi@salvage.acount", password: "cindi8046" },
+  { username: "kirana@salvage.acount", password: "kirana1935" },
+  { username: "mouza@salvage.acount", password: "mouza6682" },
+  { username: "shofia@salvage.acount", password: "shofia4507" },
+  { username: "ayu@salvage.acount", password: "ayu7294" },
+  { username: "farika@salvage.acount", password: "farika3816" }
+];
+
+    function login() {
+        let usr = document.getElementById("username").value;
+        let pw = document.getElementById("password").value;
+        let psn = document.getElementById("message");
+
+        if (usr === "" || pw === "") {
+            psn.innerHTML = "username dan password wajib di isi";
+        } else {
+            const user = users.find(u => u.username === usr && u.password === pw);
+            if (user) {
+                psn.innerHTML = "login berhasil";
+                window.location.href = "indexa.html";
+            } else {
+                psn.innerHTML = "username atau password salah";
+            }
+        }
+    }
+    </script>
+</body>
+</html>
